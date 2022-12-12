@@ -1,7 +1,9 @@
 package com.devsuperior.desafiocrud.controllers;
 
 import com.devsuperior.desafiocrud.dto.ClientDTO;
+import com.devsuperior.desafiocrud.dto.CustomError;
 import com.devsuperior.desafiocrud.services.ClientService;
+import com.devsuperior.desafiocrud.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
+import java.time.Instant;
 
 @RestController
 @RequestMapping(value = "/clients")
@@ -19,8 +21,8 @@ public class ClientController {
     private ClientService service;
     @GetMapping(value = "/{id}")
     public ResponseEntity <ClientDTO> findById(@PathVariable Long id){
-    ClientDTO dto = service.findById(id);
-    return ResponseEntity.ok(dto);
+            ClientDTO dto = service.findById(id);
+            return ResponseEntity.ok(dto);
     }
 
     @GetMapping
