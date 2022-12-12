@@ -1,14 +1,18 @@
 package com.devsuperior.desafiocrud.dto;
 
 import com.devsuperior.desafiocrud.entities.Client;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
     private Long id;
+    @NotBlank(message = "Não pode ser vazio")
     private String name;
     private String cpf;
     private Double income;
+    @PastOrPresent(message = "Não pode ser data futura")
     private LocalDate birthDate;
     private Integer children;
 
